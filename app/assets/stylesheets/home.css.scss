@@ -1,4 +1,64 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
 @import "bootstrap";
+
+.fm-navbar {
+  @extend .navbar;
+  @extend .navbar-static-top;
+  @extend .navbar-inverse;
+}
+
+.fm-navbar-inner {
+  @extend .navbar-inner;
+}
+
+.fm-navbar-login {
+  @extend .nav;
+  @extend .pull-right;
+}
+
+.fm-notice {
+  @extend .alert;
+  @extend .alert-success;
+}
+
+.fm-alert, #error_explanation {
+  @extend .alert;
+  @extend .alert-error;
+  h2 {
+    font-size: $baseFontSize + 2px;
+    line-height: $baseFontSize + 2px;
+  }  
+}
+
+.fm-btn-signup {
+  @extend .btn;
+  @extend .btn-primary;
+  padding: 5px 86px;
+  font-size: $baseFontSize + 2px;
+  line-height: normal;
+  @include border-radius(5px);
+}
+
+.fm-container {
+  @extend .container;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;  
+}
+
+.fm-remember-me {
+  @extend .input-large;
+
+  background-color: #cccccc;
+  @include border-radius(5px);
+  padding: 6px 6px;
+  margin-bottom:10px;
+
+  input {
+    margin: auto 20px;
+  }
+
+  label {
+    margin: auto auto;
+    display: inline;
+  }
+}

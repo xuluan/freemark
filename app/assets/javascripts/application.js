@@ -13,3 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+  $('input, textarea').placeholder();
+  $('.EA-label-hover').on("mouseover", function(){
+    $(this).find('p').css('display','inline')
+  });
+  $('.EA-label-hover').on("mouseout", function(){
+    $(this).find('p').css('display','none')
+  });  
+});

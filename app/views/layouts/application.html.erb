@@ -2,17 +2,15 @@
 <html>
 <head>
 	<title>Freemark</title>
-	<%= stylesheet_link_tag    "home", :media => "all" %>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %></head>
 <body>
-	<div id="user_nav" class="navbar navbar-static-top">
-		<div class="navbar-inner">
-			<div class="container">
+	<div class="fm-navbar">
+		<div class="fm-navbar-inner">
+				<a class="brand" href="/">FreeMark</a>
 
-				<a class="brand" href="/">Meetin</a>
-
-				<ul class="nav pull-right">
+				<ul class="fm-navbar-login">
 					<% if user_signed_in? %>
 
 					<li >
@@ -35,11 +33,13 @@
 
 					<% end %>
 				</ul>
-			</div>
 		</div>
 	</div>
-	<%= content_tag(:div, notice, class: "alert alert-success") if notice %>
-	<%= content_tag(:div, alert, class: "alert alert-error") if alert %>
+	<div class="fm-container">
+
+	<%= content_tag(:div, notice, class: "fm-notice") if notice %>
+	<%= content_tag(:div, alert, class: "fm-alert") if alert %>
 	<%= yield %>
+	</div>
 </body>
 </html>
