@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Freemark</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+	<title>Freemark</title>
+	<%= stylesheet_link_tag    "home", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %></head>
 <body>
+	<div id="user_nav" class="navbar navbar-static-top">
+		<div class="navbar-inner">
+			<div class="container">
 
-<%= yield %>
+				<a class="brand" href="/">Meetin</a>
 
+				<ul class="nav pull-right">
+					<% if user_signed_in? %>
+
+					<li >
+						<%= link_to 'My Account', edit_user_registration_path %>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+					</li>
+
+					<% else %>
+					<li>
+						<%= link_to "Sign Up", new_user_registration_path %>
+					</li>
+					<li class="divider-vertical"></li>
+					<li >
+						<%= link_to "Login", new_user_session_path %>
+					</li>
+					<li class="divider-vertical"></li>
+
+					<% end %>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<%= content_tag(:div, notice, class: "alert alert-success") if notice %>
+	<%= content_tag(:div, alert, class: "alert alert-error") if alert %>
+	<%= yield %>
 </body>
 </html>
