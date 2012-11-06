@@ -38,11 +38,31 @@
   @include border-radius(5px);
 }
 
+.fm-input-pwd-forgot {
+  @extend .input-large;
+  width: 264px;
+}
+
+.fm-btn-pwd-forgot {
+  @extend .fm-btn-signup;
+  padding: 5px 10px;
+}
+
+.fm-btn-pwd-reset {
+  @extend .fm-btn-signup;
+  padding: 5px 36px;
+}
+
 .fm-container {
   @extend .container;
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;  
+}
+
+.fm-container-setup {
+  @extend .fm-container;
+  width: 600px;
 }
 
 .fm-remember-me {

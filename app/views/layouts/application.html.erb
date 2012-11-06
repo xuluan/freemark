@@ -35,7 +35,7 @@
 				</ul>
 		</div>
 	</div>
-	<div class="fm-container">
+	<div class="<%= content_for?(:container) ? 'fm-container-setup' : 'fm-container' %>">
 
 	<%= content_tag(:div, notice, class: "fm-notice") if notice %>
 	<%= content_tag(:div, alert, class: "fm-alert") if alert %>
