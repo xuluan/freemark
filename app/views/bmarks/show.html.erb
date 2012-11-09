@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @bmark.title %>
+</p>
+
+<p>
+  <b>Link:</b>
+  <%= @bmark.link %>
+</p>
+
+<p>
+  <b>Desc:</b>
+  <%= @bmark.desc %>
+</p>
+
+
+<%= link_to 'Edit', edit_bmark_path(@bmark) %> |
+<%= link_to 'Back', bmarks_path %>

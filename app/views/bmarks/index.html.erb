@@ -1,0 +1,27 @@
+<h1>Listing bmarks</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Link</th>
+    <th>Desc</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @bmarks.each do |bmark| %>
+  <tr>
+    <td><%= bmark.title %></td>
+    <td><%= bmark.link %></td>
+    <td><%= bmark.desc %></td>
+    <td><%= link_to 'Show', bmark %></td>
+    <td><%= link_to 'Edit', edit_bmark_path(bmark) %></td>
+    <td><%= link_to 'Destroy', bmark, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Bmark', new_bmark_path %>
