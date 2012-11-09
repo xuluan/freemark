@@ -18,7 +18,7 @@ class App extends Spine.Controller
     # Initialize controllers:
     #  @append(@items = new App.Items)
     #  ...
-    
+    @append(@bmarks = new App.Bmarks)
     Spine.Route.setup()    
 
 window.App = App

@@ -1,0 +1,12 @@
+<h1>Listing Bmarks</h1>
+
+<% for bmark in @bmarks: %>
+  <div class="item" data-id="<%= bmark.id %>">
+    <a data-type="show"><%= bmark.title %></a>
+    
+    <a data-type="edit">Edit</a> 
+    <a data-type="destroy">Destroy</a>
+  </div>
+<% end %>
+
+<p><a data-type="new">New Bmark</a></p>

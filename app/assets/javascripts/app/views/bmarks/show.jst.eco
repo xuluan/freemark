@@ -1,0 +1,7 @@
+<h1>Show Bmark</h1>
+
+<a data-type="edit">Edit</a> <a data-type="back">Back</a>
+
+<p>Title: <%= @title %></p>
+<p>Link: <%= @link %></p>
+<p>Desc: <%= @desc %></p>
