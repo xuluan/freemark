@@ -8,8 +8,7 @@
     <span>Title</span>
     <input 
       type="text" name="title" 
-      value="<%= @title %>" required
- autofocus>
+      value="<%= @title %>" required autofocus>
     <br />
   </label>
   
@@ -17,8 +16,7 @@
     <span>Link</span>
     <input 
       type="text" name="link" 
-      value="<%= @link %>" required
->
+      value="<%= @link %>" required>
     <br />
   </label>
   
@@ -26,8 +24,7 @@
     <span>Desc</span>
     <input 
       type="text" name="desc" 
-      value="<%= @desc %>" required
->
+      value="<%= @desc %>" >
     <br />
   </label>
   

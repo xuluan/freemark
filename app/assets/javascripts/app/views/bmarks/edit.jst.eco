@@ -26,8 +26,7 @@
     <span>Desc</span>
     <input 
       type="text" name="desc" 
-      value="<%= @desc %>" required
->
+      value="<%= @desc %>" >
     <br />
   </label>
   

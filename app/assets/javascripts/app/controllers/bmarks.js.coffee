@@ -14,6 +14,11 @@ class New extends Spine.Controller
   constructor: ->
     super
     @active @render
+    Bmark.bind 'error', @error
+
+  error: (model, error) =>
+    alert(error)
+    Spine.Log.log error
     
   render: ->
     @html @view('bmarks/new')
