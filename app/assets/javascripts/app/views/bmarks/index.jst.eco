@@ -1,12 +1,26 @@
 <h1>Listing Bmarks</h1>
-
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Title</th>
+<th>Description</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
 <% for bmark in @bmarks: %>
-  <div class="item" data-id="<%= bmark.id %>">
-    <a data-type="show"><%= bmark.title %></a>
-    
-    <a data-type="edit">Edit</a> 
-    <a data-type="destroy">Destroy</a>
-  </div>
+
+<tr class="item" data-id="<%= bmark.id %>">
+<td><a href="<%= bmark.link %>"  target="_blank"><%= bmark.title %></a></td>
+<td><%= bmark.desc %></td>
+<td>
+<a data-type="edit" class="btn btn-success">Edit</a> 
+<a data-type="destroy" class="btn btn-warning">Destroy</a>
+</td>
+</tr>
 <% end %>
+</tbody>
+</table>
+
 
 <p><a data-type="new">New Bmark</a></p>

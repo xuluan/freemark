@@ -56,34 +56,10 @@ class Edit extends Spine.Controller
     @item.fromForm(e.target).save()
     @navigate '/bmarks'
 
-class Show extends Spine.Controller
-  events:
-    'click [data-type=edit]': 'edit'
-    'click [data-type=back]': 'back'
-
-  constructor: ->
-    super
-    @active (params) ->
-      @change(params.id)
-
-  change: (id) ->
-    @item = Bmark.find(id)
-    @render()
-
-  render: ->
-    @html @view('bmarks/show')(@item)
-
-  edit: ->
-    @navigate '/bmarks', @item.id, 'edit'
-
-  back: ->
-    @navigate '/bmarks'
-
 class Index extends Spine.Controller
   events:
     'click [data-type=edit]':    'edit'
     'click [data-type=destroy]': 'destroy'
-    'click [data-type=show]':    'show'
     'click [data-type=new]':     'new'
 
   constructor: ->
@@ -94,7 +70,7 @@ class Index extends Spine.Controller
   render: =>
     bmarks = Bmark.all()
     @html @view('bmarks/index')(bmarks: bmarks)
-    
+
   edit: (e) ->
     item = $(e.target).item()
     @navigate '/bmarks', item.id, 'edit'
@@ -103,10 +79,6 @@ class Index extends Spine.Controller
     item = $(e.target).item()
     item.destroy() if confirm('Sure?')
     
-  show: (e) ->
-    item = $(e.target).item()
-    @navigate '/bmarks', item.id
-    
   new: ->
     @navigate '/bmarks/new'
     
@@ -114,14 +86,13 @@ class App.Bmarks extends Spine.Stack
   controllers:
     index: Index
     edit:  Edit
-    show:  Show
     new:   New
     
   routes:
     '/bmarks/new':      'new'
     '/bmarks/:id/edit': 'edit'
-    '/bmarks/:id':      'show'
     '/bmarks':          'index'
     
   default: 'index'
   className: 'stack bmarks'
+  el: "#bmarks"
