@@ -6,31 +6,6 @@ $.fn.item = ->
   elementID or= $(@).parents('[data-id]').data('id')
   Bmark.find(elementID)
 
-class New extends Spine.Controller
-  events:
-    'click [data-type=back]': 'back'
-    'submit form': 'submit'
-    
-  constructor: ->
-    super
-    @active @render
-    Bmark.bind 'error', @error
-
-  error: (model, error) =>
-    alert(error)
-    Spine.Log.log error
-    
-  render: ->
-    @html @view('bmarks/new')
-
-  back: ->
-    @navigate '/bmarks'
-
-  submit: (e) ->
-    e.preventDefault()
-    bmark = Bmark.fromForm(e.target).save()
-    @navigate '/bmarks', bmark.id if bmark
-
 class Edit extends Spine.Controller
   events:
     'click [data-type=back]': 'back'
@@ -82,17 +57,100 @@ class Index extends Spine.Controller
   new: ->
     @navigate '/bmarks/new'
     
-class App.Bmarks extends Spine.Stack
-  controllers:
-    index: Index
-    edit:  Edit
-    new:   New
+
+class BmarkItem extends Spine.Controller
+  # Delegate the click event to a local handler
+  events:
+    "click": "click"
+    'click [data-type=edit]': 'edit'
+
+  className: 'item'
+
+
+  # Bind events to the record
+  constructor: ->
+    super
+    throw "@item required" unless @item
+    @item.bind("update", @render)
+    @item.bind("destroy", @remove)
+
+
+  render: (item) =>
+    @item = item if item
+    @html(@template(@item))
+    @
+
+  # Use a template, in this case via Eco
+  template: (item) ->
+    @view('bmarks/show')(item)
+
+  # Called after an element is destroyed
+  remove: ->
+    @el.remove()
+
+  # We have fine control over events, and 
+  # easy access to the record too
+  click: ->
+
+  edit: ->
+    @el.addClass("editing")
+
+
+class New extends Spine.Controller
+  events:
+    'click .new-bmark': 'add'
+    'click .back': 'back'
+    'submit form': 'submit'
+
+  className: 'add-bmark'
     
-  routes:
-    '/bmarks/new':      'new'
-    '/bmarks/:id/edit': 'edit'
-    '/bmarks':          'index'
+  constructor: ->
+    super
+    @active @render
+    Bmark.bind 'error', @error
+
+  error: (model, error) =>
+    alert(error)
+    Spine.Log.log error
     
-  default: 'index'
-  className: 'stack bmarks'
+  render: (item) =>
+    @item = item if item
+    @html(@template(@item))
+    @
+
+  # Use a template, in this case via Eco
+  template: (item) ->
+    @view('bmarks/new')(item)
+
+  add: ->
+    @el.addClass("editing")
+
+class App.Bmarks extends Spine.Controller
+  events:
+    "click": "click"
+    'click .new-bmark': 'add_bmark'
+
   el: "#bmarks"
+  elements:
+    ".items":     "items"
+    ".new-bmark": "add"
+
+  constructor: ->
+    super
+    Bmark.bind("refresh", @addAll)
+    Bmark.bind("create",  @addOne)
+    Bmark.fetch()
+    @addBmark()
+    @
+
+  addOne: (item) =>
+    bmark = new BmarkItem(item: item)
+    # bmark.render()
+    @items.append(bmark.render().el)
+
+  addAll: =>
+    Bmark.each(@addOne)
+
+  addBmark: ->
+    addbmark = new New()
+    @add.append(addbmark.render().el)

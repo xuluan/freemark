@@ -1,7 +1,42 @@
-<h1>Show Bmark</h1>
+<div class="item" data-id="<%= @id %>">
+<div class="view">
+<a href="<%= @link %>"  target="_blank"><%= @title %></a>
+<%= @desc %>
 
-<a data-type="edit">Edit</a> <a data-type="back">Back</a>
+<a data-type="edit" class="btn btn-success">Edit</a> 
+<a data-type="destroy" class="btn btn-warning">Destroy</a>
 
-<p>Title: <%= @title %></p>
-<p>Link: <%= @link %></p>
-<p>Desc: <%= @desc %></p>
+</div>
+<div class="edit">
+<form>
+  
+  <label>
+    <span>Title</span>
+    <input 
+      type="text" name="title" 
+      value="<%= @title %>" required
+ autofocus>
+    <br />
+  </label>
+  
+  <label>
+    <span>Link</span>
+    <input 
+      type="text" name="link" 
+      value="<%= @link %>" required
+>
+    <br />
+  </label>
+  
+  <label>
+    <span>Desc</span>
+    <input 
+      type="text" name="desc" 
+      value="<%= @desc %>" >
+    <br />
+  </label>
+  
+  <button>Edit</button>
+
+</form>
+</div>

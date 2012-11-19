@@ -1,26 +1,50 @@
 <h1>Listing Bmarks</h1>
-<table class="table table-bordered table-striped">
-<thead>
-<tr>
-<th>Title</th>
-<th>Description</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody>
 <% for bmark in @bmarks: %>
 
-<tr class="item" data-id="<%= bmark.id %>">
-<td><a href="<%= bmark.link %>"  target="_blank"><%= bmark.title %></a></td>
-<td><%= bmark.desc %></td>
-<td>
+<div class="item" data-id="<%= bmark.id %>">
+<div class="view">
+<a href="<%= bmark.link %>"  target="_blank"><%= bmark.title %></a>
+<%= bmark.desc %>
+
 <a data-type="edit" class="btn btn-success">Edit</a> 
 <a data-type="destroy" class="btn btn-warning">Destroy</a>
-</td>
-</tr>
+
+</div>
+<div class="edit">
+<form>
+  
+  <label>
+    <span>Title</span>
+    <input 
+      type="text" name="title" 
+      value="<%= bmark.title %>" required
+ autofocus>
+    <br />
+  </label>
+  
+  <label>
+    <span>Link</span>
+    <input 
+      type="text" name="link" 
+      value="<%= bmark.link %>" required
+>
+    <br />
+  </label>
+  
+  <label>
+    <span>Desc</span>
+    <input 
+      type="text" name="desc" 
+      value="<%= bmark.desc %>" >
+    <br />
+  </label>
+  
+  <button>Edit</button>
+
+</form>
+</div>
 <% end %>
-</tbody>
-</table>
+
 
 
 <p><a data-type="new">New Bmark</a></p>
