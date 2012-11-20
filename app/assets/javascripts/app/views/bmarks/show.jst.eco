@@ -1,42 +1,37 @@
 <div class="item" data-id="<%= @id %>">
-<div class="view">
-<a href="<%= @link %>"  target="_blank"><%= @title %></a>
-<%= @desc %>
+  <div class="view">
+    <table class="table">
+    <tr>
+      <td width="15%"> <a href="<%= @link %>"  target="_blank"><%= @title %></a> </td> 
+      <td width="65%"> <%= @desc %> </td> 
+      <td width="20%"> 
+        <a data-type="edit" class="btn btn-success">Edit</a> 
+        <a data-type="destroy" class="btn btn-warning">Destroy</a>
+      </td> 
+    </tr>
 
-<a data-type="edit" class="btn btn-success">Edit</a> 
-<a data-type="destroy" class="btn btn-warning">Destroy</a>
-
-</div>
+    </table>
+  </div>
 <div class="edit">
 <form>
-  
-  <label>
-    <span>Title</span>
-    <input 
-      type="text" name="title" 
-      value="<%= @title %>" required
- autofocus>
-    <br />
-  </label>
-  
-  <label>
-    <span>Link</span>
-    <input 
-      type="text" name="link" 
-      value="<%= @link %>" required
->
-    <br />
-  </label>
-  
-  <label>
-    <span>Desc</span>
-    <input 
-      type="text" name="desc" 
-      value="<%= @desc %>" >
-    <br />
-  </label>
-  
-  <button>Edit</button>
+    <table class="table">
+    <tr>
+      <td width="15%"> 
+        <input type="text" name="title" value="<%= @title %>" placeholder="Title" required autofocus> 
+      </td> 
+      <td width="30%">
+        <input type="text" name="link" value="<%= @link %>" placeholder="Link" required> 
+      </td>
+      <td width="30%"> 
+        <input type="text" name="desc" value="<%= @desc %>" placeholder="Description"> 
+      </td> 
+      <td width="25%"> 
+        <button data-type="save" class="btn btn-success">Save</button>
+        <a data-type="cancel" class="btn btn-warning">Cancel</a>
+      </td> 
+    </tr>
 
+    </table>
 </form>
+</div>
 </div>

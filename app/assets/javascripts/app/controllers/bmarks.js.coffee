@@ -6,63 +6,13 @@ $.fn.item = ->
   elementID or= $(@).parents('[data-id]').data('id')
   Bmark.find(elementID)
 
-class Edit extends Spine.Controller
-  events:
-    'click [data-type=back]': 'back'
-    'submit form': 'submit'
-  
-  constructor: ->
-    super
-    @active (params) ->
-      @change(params.id)
-      
-  change: (id) ->
-    @item = Bmark.find(id)
-    @render()
-    
-  render: ->
-    @html @view('bmarks/edit')(@item)
-
-  back: ->
-    @navigate '/bmarks'
-
-  submit: (e) ->
-    e.preventDefault()
-    @item.fromForm(e.target).save()
-    @navigate '/bmarks'
-
-class Index extends Spine.Controller
-  events:
-    'click [data-type=edit]':    'edit'
-    'click [data-type=destroy]': 'destroy'
-    'click [data-type=new]':     'new'
-
-  constructor: ->
-    super
-    Bmark.bind 'refresh change', @render
-    Bmark.fetch()
-    
-  render: =>
-    bmarks = Bmark.all()
-    @html @view('bmarks/index')(bmarks: bmarks)
-
-  edit: (e) ->
-    item = $(e.target).item()
-    @navigate '/bmarks', item.id, 'edit'
-    
-  destroy: (e) ->
-    item = $(e.target).item()
-    item.destroy() if confirm('Sure?')
-    
-  new: ->
-    @navigate '/bmarks/new'
-    
-
 class BmarkItem extends Spine.Controller
   # Delegate the click event to a local handler
   events:
-    "click": "click"
     'click [data-type=edit]': 'edit'
+    'click [data-type=destroy]': 'destroy'
+    'click [data-type=cancel]': 'cancel'
+    'submit form': 'save'
 
   className: 'item'
 
@@ -84,22 +34,31 @@ class BmarkItem extends Spine.Controller
   template: (item) ->
     @view('bmarks/show')(item)
 
-  # Called after an element is destroyed
-  remove: ->
+  destroy: (e) ->
+    App.x = this
+    @item.destroy() if confirm('Sure?')
+
+  remove: =>
     @el.remove()
 
-  # We have fine control over events, and 
-  # easy access to the record too
-  click: ->
+  save: (e) ->
+    e.preventDefault()
+    @item.fromForm(e.target).save()
+    @close()
 
   edit: ->
     @el.addClass("editing")
 
+  cancel: ->
+    @close() if confirm('Sure?')
+
+  close: ->
+    @el.removeClass("editing")
 
 class New extends Spine.Controller
   events:
-    'click .new-bmark': 'add'
-    'click .back': 'back'
+    'click .new-bmark': 'create'
+    'click [data-type=cancel]': 'cancel'
     'submit form': 'submit'
 
   className: 'add-bmark'
@@ -107,11 +66,6 @@ class New extends Spine.Controller
   constructor: ->
     super
     @active @render
-    Bmark.bind 'error', @error
-
-  error: (model, error) =>
-    alert(error)
-    Spine.Log.log error
     
   render: (item) =>
     @item = item if item
@@ -122,13 +76,21 @@ class New extends Spine.Controller
   template: (item) ->
     @view('bmarks/new')(item)
 
-  add: ->
+  create: ->
     @el.addClass("editing")
 
+  submit: (e) ->
+    e.preventDefault()
+    bmark = Bmark.fromForm(e.target).save()
+    @close() if bmark
+
+  cancel: ->
+    @close() if confirm('Sure?')
+
+  close: ->
+    @el.removeClass("editing")
+
 class App.Bmarks extends Spine.Controller
-  events:
-    "click": "click"
-    'click .new-bmark': 'add_bmark'
 
   el: "#bmarks"
   elements:
