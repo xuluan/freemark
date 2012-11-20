@@ -38,6 +38,8 @@ Freemark::Application.configure do
 
   # Use a different logger for distributed setups
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+  log_file = File.join(File.dirname(__FILE__), "../../log/#{ENV['RAILS_ENV']}.log")
+  config.logger = Logger.new(log_file, 5,  100  * 1024)
 
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
