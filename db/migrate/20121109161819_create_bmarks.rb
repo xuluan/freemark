@@ -1,8 +1,8 @@
 class CreateBmarks < ActiveRecord::Migration
   def change
     create_table :bmarks do |t|
-      t.string :title
-      t.string :link
+      t.string :title, null: false
+      t.string :link, null: false
       t.text :desc
 
       t.timestamps

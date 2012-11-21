@@ -11,15 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121109161819) do
+ActiveRecord::Schema.define(:version => 20121121163250) do
 
   create_table "bmarks", :force => true do |t|
-    t.string   "title"
-    t.string   "link"
+    t.string   "title",      :null => false
+    t.string   "link",       :null => false
     t.text     "desc"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
   end
+
+  add_index "bmarks", ["user_id"], :name => "index_bmarks_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

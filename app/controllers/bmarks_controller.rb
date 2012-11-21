@@ -1,8 +1,10 @@
 class BmarksController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /bmarks
   # GET /bmarks.json
   def index
-    @bmarks = Bmark.all
+    @bmarks = current_user.bmarks.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -42,7 +44,7 @@ class BmarksController < ApplicationController
   # POST /bmarks
   # POST /bmarks.json
   def create
-    @bmark = Bmark.new(params[:bmark])
+    @bmark = current_user.bmarks.build(params[:bmark])
 
     respond_to do |format|
       if @bmark.save

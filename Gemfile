@@ -48,8 +48,8 @@ group :development, :test do
   # gem 'factory_girl_rails'
   # gem "webrat"  
 
-  gem 'pry-rails'
-  gem 'pry-nav'  
+  # gem 'pry-rails'
+  # gem 'pry-nav'  
 end
 
 gem "devise"

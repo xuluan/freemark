@@ -16,14 +16,12 @@ class BmarkItem extends Spine.Controller
 
   className: 'item'
 
-
   # Bind events to the record
   constructor: ->
     super
     throw "@item required" unless @item
     @item.bind("update", @render)
     @item.bind("destroy", @remove)
-
 
   render: (item) =>
     @item = item if item
@@ -50,7 +48,7 @@ class BmarkItem extends Spine.Controller
     @el.addClass("editing")
 
   cancel: ->
-    @close() if confirm('Sure?')
+    @close()
 
   close: ->
     @el.removeClass("editing")
@@ -85,7 +83,7 @@ class New extends Spine.Controller
     @close() if bmark
 
   cancel: ->
-    @close() if confirm('Sure?')
+    @close()
 
   close: ->
     @el.removeClass("editing")
