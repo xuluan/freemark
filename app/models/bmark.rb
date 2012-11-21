@@ -6,5 +6,6 @@ class Bmark < ActiveRecord::Base
     message: "invalid url" }  
 
   belongs_to :user
+  has_many :taggings, dependent: :destroy
 
 end

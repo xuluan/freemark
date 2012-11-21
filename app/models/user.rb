@@ -10,5 +10,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :bmarks, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
 end

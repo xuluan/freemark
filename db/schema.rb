@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121163250) do
+ActiveRecord::Schema.define(:version => 20121121195505) do
 
   create_table "bmarks", :force => true do |t|
     t.string   "title",      :null => false
@@ -22,7 +22,28 @@ ActiveRecord::Schema.define(:version => 20121121163250) do
     t.integer  "user_id",    :null => false
   end
 
+  add_index "bmarks", ["link"], :name => "index_bmarks_on_link"
   add_index "bmarks", ["user_id"], :name => "index_bmarks_on_user_id"
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id",     :null => false
+    t.integer  "bmark_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "taggings", ["bmark_id"], :name => "index_taggings_on_bmark_id"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name",       :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tags", ["name"], :name => "index_tags_on_name"
+  add_index "tags", ["user_id"], :name => "index_tags_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

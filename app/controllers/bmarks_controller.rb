@@ -60,7 +60,7 @@ class BmarksController < ApplicationController
   # PUT /bmarks/1
   # PUT /bmarks/1.json
   def update
-    @bmark = Bmark.find(params[:id])
+    @bmark = current_user.bmarks.find(params[:id])
 
     respond_to do |format|
       if @bmark.update_attributes(params[:bmark])
@@ -76,7 +76,7 @@ class BmarksController < ApplicationController
   # DELETE /bmarks/1
   # DELETE /bmarks/1.json
   def destroy
-    @bmark = Bmark.find(params[:id])
+    @bmark = current_user.bmarks.find(params[:id])
     @bmark.destroy
 
     respond_to do |format|

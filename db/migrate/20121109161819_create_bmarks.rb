@@ -7,5 +7,6 @@ class CreateBmarks < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :bmarks, :link
   end
 end
