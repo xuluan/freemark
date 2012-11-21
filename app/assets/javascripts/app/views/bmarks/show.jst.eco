@@ -2,8 +2,8 @@
   <div class="view">
     <table class="table">
     <tr>
-      <td width="15%"> <a href="<%= @link %>"  target="_blank"><%= @title %></a> </td> 
-      <td width="65%"> <%= @desc %> </td> 
+      <td width="35%"> <a href="<%= @link %>"  target="_blank"><%= @title %></a> </td> 
+      <td width="45%"> <%= @desc %> </td> 
       <td width="20%"> 
         <a data-type="edit" class="btn btn-success">Edit</a> 
         <a data-type="destroy" class="btn btn-warning">Destroy</a>
