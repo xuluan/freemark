@@ -3,7 +3,7 @@ upstream unicorn_<%= application %> {
 }
 
 server {
-  listen 80 default deferred;
+  listen 80;
   server_name freemark.xuluan.me;
   root <%= current_path %>/public;
 
