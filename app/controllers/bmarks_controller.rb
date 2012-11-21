@@ -25,6 +25,8 @@ class BmarksController < ApplicationController
   # GET /bmarks/new.json
   def new
     @bmark = Bmark.new
+    @bmark.link = params[:link] if params[:link]
+    @bmark.title = params[:title] if params[:title]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -44,7 +46,7 @@ class BmarksController < ApplicationController
 
     respond_to do |format|
       if @bmark.save
-        format.html { redirect_to @bmark, notice: 'Bmark was successfully created.' }
+        format.html { redirect_to "/", notice: 'Bmark was successfully created.' }
         format.json { render json: @bmark, status: :created, location: @bmark }
       else
         format.html { render action: "new" }

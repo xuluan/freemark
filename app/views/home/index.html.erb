@@ -1,3 +1,6 @@
+
+
+
 <div id="app">
 <div id="bmarks">
 
@@ -11,7 +14,9 @@
 </div>
 </div>
 </div>
-
+<br/>
+<div class="alert alert-info"> Please drag the button into your toolbar 
+<a href="javascript:(function(){f='<%= root_url %>bmarks/new?link='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title);window.open(f);})();" class="btn">save on Freemark</a></div>
 <script type="text/javascript">
 jQuery(function(){
   new App({el: $('#app')});
