@@ -13,6 +13,7 @@ class BmarkItem extends Spine.Controller
     'click [data-type=destroy]': 'destroy'
     'click [data-type=cancel]': 'cancel'
     'submit form': 'save'
+    'ajaxSuccess': "showTagging"
 
   className: 'item'
 
@@ -22,11 +23,16 @@ class BmarkItem extends Spine.Controller
     throw "@item required" unless @item
     @item.bind("update", @render)
     @item.bind("destroy", @remove)
+    App.Tagging.fetchByBmark(@item.id)
 
   render: (item) =>
     @item = item if item
     @html(@template(@item))
     @
+
+  showTagging: (result) ->
+    @item.taggings = App.Tagging.all()
+    console.log(@item.id) if @item.taggings.length > 0
 
   # Use a template, in this case via Eco
   template: (item) ->

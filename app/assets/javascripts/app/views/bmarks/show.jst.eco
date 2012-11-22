@@ -34,4 +34,10 @@
     </table>
 </form>
 </div>
+<div class="tagging">
+<%= @taggings %>
+<% for tagging in @taggings: %>
+<span> <%= tagging.tag_id %> <%= tagging.bmark_id %> </span>
+<% end %>
+</div>
 </div>
