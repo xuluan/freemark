@@ -4,8 +4,7 @@ class TaggingsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    b = Bmark.find(params[:bmark_id])
-    @taggings = b.taggings.all
+    @taggings = Tagging.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -34,7 +33,8 @@ class TaggingsController < ApplicationController
   # DELETE /tags/1
   # DELETE /tags/1.json
   def destroy
-    Tagging.deleteOne(params[:name], params[:bmark_id], current_user.id)
+    tagging = Tagging.find(params[:id])
+    Tagging.deleteOne(tagging.name, tagging.bmark_id, current_user.id)
 
     respond_to do |format|
       format.html { redirect_to tags_url }

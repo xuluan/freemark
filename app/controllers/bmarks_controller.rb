@@ -4,7 +4,18 @@ class BmarksController < ApplicationController
   # GET /bmarks
   # GET /bmarks.json
   def index
-    @bmarks = current_user.bmarks.all
+    # @bmarks = current_user.bmarks.all
+    # @bmarks = current_user.bmarks.includes(:taggings).map do |bmark| 
+    #   { id: bmark.id, title: bmark.title, link: bmark.link, 
+    #     desc: bmark.desc, taggings: bmark.taggings}
+    # end
+
+    @bmarks = current_user.bmarks.includes(:taggings => :tag).map do |b|
+      taggings = b.taggings.map do |t| 
+        {id:t.id, name:t.name, bmark_id: t.bmark_id}
+      end
+      {id:b.id, title:b.title, link:b.link, desc:b.desc, taggings:taggings}
+    end
 
     respond_to do |format|
       format.html # index.html.erb

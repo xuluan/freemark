@@ -1,10 +1,11 @@
 $ = jQuery.sub()
 Bmark = App.Bmark
+Tagging = App.Tagging
 
 $.fn.item = ->
   elementID   = $(@).data('id')
   elementID or= $(@).parents('[data-id]').data('id')
-  Bmark.find(elementID)
+  new Tagging(id:elementID)
 
 class BmarkItem extends Spine.Controller
   # Delegate the click event to a local handler
@@ -12,8 +13,9 @@ class BmarkItem extends Spine.Controller
     'click [data-type=edit]': 'edit'
     'click [data-type=destroy]': 'destroy'
     'click [data-type=cancel]': 'cancel'
-    'submit form': 'save'
-    'ajaxSuccess': "showTagging"
+    'submit form.edit-bmark': 'save'
+    'click a.icon-remove': 'delTag'
+    'submit form.add-tagging': 'addTag'
 
   className: 'item'
 
@@ -23,24 +25,28 @@ class BmarkItem extends Spine.Controller
     throw "@item required" unless @item
     @item.bind("update", @render)
     @item.bind("destroy", @remove)
-    App.Tagging.fetchByBmark(@item.id)
 
   render: (item) =>
     @item = item if item
     @html(@template(@item))
     @
 
-  showTagging: (result) ->
-    @item.taggings = App.Tagging.all()
-    console.log(@item.id) if @item.taggings.length > 0
-
   # Use a template, in this case via Eco
   template: (item) ->
     @view('bmarks/show')(item)
 
   destroy: (e) ->
-    App.x = this
-    @item.destroy() if confirm('Sure?')
+    @item.destroy() if confirm('Remove this Bookmark, sure?')
+  
+  delTag: (e) ->
+    item = $(e.target).item()
+    item.destroy() if confirm('Remove this tag, sure?')
+    $(e.target).parents('.tagging').remove()
+
+  addTag: (e) ->
+    e.preventDefault()
+    tagging = Tagging.fromForm(e.target).save()
+     # if tagging
 
   remove: =>
     @el.remove()

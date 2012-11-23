@@ -13,7 +13,7 @@
     </table>
   </div>
 <div class="edit">
-<form>
+<form class="edit-bmark">
     <table class="table">
     <tr>
       <td width="15%"> 
@@ -34,10 +34,17 @@
     </table>
 </form>
 </div>
-<div class="tagging">
-<%= @taggings %>
+<div class="taggings">
+<span class="add-tagging">
+<form class="add-tagging">
+<input type="text" name="name" value="<%= @name %>" placeholder="Tag Name" required> 
+<input type="hidden" name="bmark_id" value="<%= @id %>" />
+<button data-type="add" class="btn btn-success">Add</button>
+
+</form>
+</span>
 <% for tagging in @taggings: %>
-<span> <%= tagging.tag_id %> <%= tagging.bmark_id %> </span>
+<span class="tagging label" data-id="<%= tagging.id %>"> <%= tagging.name %> <a class="icon-remove"> </a> </span>
 <% end %>
 </div>
 </div>
