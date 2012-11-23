@@ -12,11 +12,13 @@ class Tagging < ActiveRecord::Base
       tag.user_id = user_id
     end
 
-    return nil unless tag
+    return {} unless tag
     
-    Tagging.where(bmark_id: bmark_id, tag_id: tag.id).first_or_create do |tagging|
-      tagging.bmark_id = bmark_id
-      tagging.tag_id = tag.id
+    if Tagging.where(bmark_id: bmark_id, tag_id: tag.id).first
+      {}
+    else
+      tagging = Tagging.create(bmark_id: bmark_id, tag_id: tag.id)
+      {id: tagging.id, name: tagging.name, bmark_id:tagging.bmark_id} 
     end
 
   end

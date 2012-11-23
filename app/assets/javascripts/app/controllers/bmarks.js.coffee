@@ -43,10 +43,16 @@ class BmarkItem extends Spine.Controller
     item.destroy() if confirm('Remove this tag, sure?')
     $(e.target).parents('.tagging').remove()
 
-  addTag: (e) ->
+  addTag: (e) =>
     e.preventDefault()
     tagging = Tagging.fromForm(e.target).save()
+    tagging.bind("ajaxSuccess", @updateTag)
      # if tagging
+  
+  updateTag: (data, args...) =>
+    if data.hasOwnProperty("id")
+      @$("div.taggings").append("<span class='tagging label' data-id='#{data.id}'> #{data.name} <a class='icon-remove'> </a> </span>")
+
 
   remove: =>
     @el.remove()
