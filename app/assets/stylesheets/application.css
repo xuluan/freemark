@@ -11,15 +11,5 @@
  *= require_self
  *= require_tree .
  */
-.stack > *:not(.active) {
-	display: none;
-}
 
-#bmarks .item .edit { display: none; }
-#bmarks .item.editing .edit { display: block; }
-#bmarks .item.editing .view { display: none; }
-
-#bmarks .add-bmark .edit { display: none; }
-#bmarks .add-bmark.editing .edit { display: block; }
-#bmarks .add-bmark.editing .view { display: none; }
 

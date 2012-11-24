@@ -1,3 +1,146 @@
 // Place all the styles related to the Bmarks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+div#app {
+  @extend .row;
+  @extend .clearfix;
+}
+
+#main {
+  .bmark .edit { display: none; }
+  .bmark.editing .edit { display: block; }
+  .bmark.editing .view { display: none; }
+
+  .add-bmark .edit { display: none; }
+  .add-bmark.editing .edit { display: block; }
+  .add-bmark.editing .view { display: none; }
+}
+
+
+div#main {
+  @extend .span8;
+  float: left;
+}
+
+div.tags {
+  @extend .span3;
+  float: right;
+}
+
+div.tag {
+  @extend .label;
+  font-size: 14px;
+  padding: 10px 10px;
+  margin: 10px auto;
+  align-content:  center;
+
+}
+
+div#footer{
+  @extend .alert;
+  @extend .alert-info;
+  margin: 20px auto;
+
+}
+
+div.add-bmark {
+  @extend .clearfix;
+
+  button.new-bmark {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+
+  div.edit div {
+    float: right;
+  }
+
+  button.create-bmark {
+    @extend .btn;
+    @extend .btn-success;
+    @extend .btn-small;
+
+  }
+
+  a.cancel {
+    @extend .btn;
+    @extend .btn-warning; 
+    @extend .btn-small;
+  }
+}
+
+div.bmarks {
+  @extend .clearfix;
+}
+
+div.bmark {
+  @extend .span8;
+  @extend .clearfix;
+  border-bottom-style: dashed;
+  border-width: 1px;
+  margin: 10px auto;
+
+
+  input {
+    @extend .input-mini;
+  }
+
+  button.add-tag {
+    @extend .btn;
+    @extend .btn-success;
+    @extend .btn-mini;
+  }
+
+  .view {
+    margin-bottom: 40px;
+
+    a.title {
+      @extend .span2;
+      float: left;
+    }
+    p.desc {
+      @extend .span4;
+      float: left;
+    }
+    div.action {
+      @extend .span2;
+      float: right;
+    }    
+  }
+
+  .edit {
+    margin: 10px auto;
+    input {
+      @extend .input-medium;
+    }
+
+    button.save {
+      @extend .btn;
+      @extend .btn-success;
+      @extend .btn-mini;
+    }
+
+    a.cancel {
+      @extend .btn;
+      @extend .btn-warning;
+      @extend .btn-mini;
+    }
+  }
+
+  div.taggings {
+    @extend .span5;
+    float: left;
+  } 
+  div.add-tagging {
+    @extend .span2;
+    float: right;
+  }
+
+  span.tagging {
+    @extend .label;
+    margin: 10px 10px 10px 0;
+  }
+
+}

@@ -1,22 +1,16 @@
-
-
-
 <div id="app">
-<div id="bmarks">
+<div id="main">
+  <div class="bmarks">
+  </div>
 
-
-
-<div class="items">
-</div>
-
-<div class="new-bmark">
-
+  <div class="add-bmark">
+  </div>
 </div>
 </div>
+
+<div id="footer"> Please drag the button into your toolbar 
+<a href="javascript:(function(){f='<%= root_url %>bmarks/new?link='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title);window.open(f);})();" class="btn">save on Freemark</a>
 </div>
-<br/>
-<div class="alert alert-info"> Please drag the button into your toolbar 
-<a href="javascript:(function(){f='<%= root_url %>bmarks/new?link='+encodeURIComponent(window.location.href)+'&title='+encodeURIComponent(document.title);window.open(f);})();" class="btn">save on Freemark</a></div>
 <script type="text/javascript">
 jQuery(function(){
   new App({el: $('#app')});

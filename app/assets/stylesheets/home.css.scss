@@ -55,9 +55,7 @@
 
 .fm-container {
   @extend .container;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;  
+  margin: 20px auto;
 }
 
 .fm-container-setup {
@@ -82,3 +80,5 @@
     display: inline;
   }
 }
+
+

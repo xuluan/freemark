@@ -1,8 +1,9 @@
 $ = jQuery.sub()
 Bmark = App.Bmark
 Tagging = App.Tagging
+Tag = App.Tag
 
-$.fn.item = ->
+$.fn.tagging = ->
   elementID   = $(@).data('id')
   elementID or= $(@).parents('[data-id]').data('id')
   new Tagging(id:elementID)
@@ -17,7 +18,7 @@ class BmarkItem extends Spine.Controller
     'click a.icon-remove': 'delTag'
     'submit form.add-tagging': 'addTag'
 
-  className: 'item'
+  className: 'bmark'
 
   # Bind events to the record
   constructor: ->
@@ -39,19 +40,20 @@ class BmarkItem extends Spine.Controller
     @item.destroy() if confirm('Remove this Bookmark, sure?')
   
   delTag: (e) ->
-    item = $(e.target).item()
-    item.destroy() if confirm('Remove this tag, sure?')
+    tagging = $(e.target).tagging()
+    tagging.destroy() if confirm('Remove this tag, sure?')
     $(e.target).parents('.tagging').remove()
 
   addTag: (e) =>
     e.preventDefault()
     tagging = Tagging.fromForm(e.target).save()
     tagging.bind("ajaxSuccess", @updateTag)
+    e.target.name.value = ""
      # if tagging
   
   updateTag: (data, args...) =>
     if data.hasOwnProperty("id")
-      @$("div.taggings").append("<span class='tagging label' data-id='#{data.id}'> #{data.name} <a class='icon-remove'> </a> </span>")
+      @$("div.taggings").append("<span class='tagging' data-id='#{data.id}'> #{data.name} <a class='icon-remove'> </a> </span>")
 
 
   remove: =>
@@ -71,7 +73,7 @@ class BmarkItem extends Spine.Controller
   close: ->
     @el.removeClass("editing")
 
-class New extends Spine.Controller
+class AddMark extends Spine.Controller
   events:
     'click .new-bmark': 'create'
     'click [data-type=cancel]': 'cancel'
@@ -106,12 +108,31 @@ class New extends Spine.Controller
   close: ->
     @el.removeClass("editing")
 
-class App.Bmarks extends Spine.Controller
+class App.Tags extends Spine.Controller
+  events:
+    'click': 'click'
 
-  el: "#bmarks"
+  className: 'tags'
+
+  constructor: ->
+    super
+    Tag.bind("refresh change", @render)
+    Tag.fetch()
+    console.log("tag constructor")
+    
+  render: =>
+    tags = Tag.select (record) ->
+      record.taggings_count > 0
+    @html @view('bmarks/index')(tags: tags)
+    
+  click: ->
+
+class App.Main extends Spine.Controller
+
+  el: "#main"
   elements:
-    ".items":     "items"
-    ".new-bmark": "add"
+    ".bmarks": "bmarks"
+    ".add-bmark": "add"
 
   constructor: ->
     super
@@ -124,11 +145,11 @@ class App.Bmarks extends Spine.Controller
   addOne: (item) =>
     bmark = new BmarkItem(item: item)
     # bmark.render()
-    @items.append(bmark.render().el)
+    @bmarks.append(bmark.render().el)
 
   addAll: =>
     Bmark.each(@addOne)
 
   addBmark: ->
-    addbmark = new New()
+    addbmark = new AddMark()
     @add.append(addbmark.render().el)

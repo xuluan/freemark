@@ -2,7 +2,8 @@ class Tagging < ActiveRecord::Base
   attr_accessible :bmark_id, :tag_id
 
   belongs_to :bmark
-  belongs_to :tag
+  belongs_to :tag, counter_cache: true
+
 
   delegate :name, to: :tag
 

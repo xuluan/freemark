@@ -1,50 +1,8 @@
-<h1>Listing Bmarks</h1>
-<% for bmark in @bmarks: %>
-
-<div class="item" data-id="<%= bmark.id %>">
-<div class="view">
-<a href="<%= bmark.link %>"  target="_blank"><%= bmark.title %></a>
-<%= bmark.desc %>
-
-<a data-type="edit" class="btn btn-success">Edit</a> 
-<a data-type="destroy" class="btn btn-warning">Destroy</a>
-
-</div>
-<div class="edit">
-<form>
-  
-  <label>
-    <span>Title</span>
-    <input 
-      type="text" name="title" 
-      value="<%= bmark.title %>" required
- autofocus>
-    <br />
-  </label>
-  
-  <label>
-    <span>Link</span>
-    <input 
-      type="text" name="link" 
-      value="<%= bmark.link %>" required
->
-    <br />
-  </label>
-  
-  <label>
-    <span>Desc</span>
-    <input 
-      type="text" name="desc" 
-      value="<%= bmark.desc %>" >
-    <br />
-  </label>
-  
-  <button>Edit</button>
-
-</form>
-</div>
+<% for tag in @tags: %>
+  <div class="tag" data-id="<%= tag.id %>">
+  <a class="icon-tag"></a>
+    <%= tag.name %>
+    <%= tag.taggings_count %>
+  </div>
 <% end %>
 
-
-
-<p><a data-type="new">New Bmark</a></p>

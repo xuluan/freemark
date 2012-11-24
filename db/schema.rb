@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121195505) do
+ActiveRecord::Schema.define(:version => 20121124032346) do
 
   create_table "bmarks", :force => true do |t|
     t.string   "title",      :null => false
@@ -36,10 +36,11 @@ ActiveRecord::Schema.define(:version => 20121121195505) do
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
 
   create_table "tags", :force => true do |t|
-    t.string   "name",       :null => false
-    t.integer  "user_id",    :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                          :null => false
+    t.integer  "user_id",                       :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "taggings_count", :default => 0
   end
 
   add_index "tags", ["name"], :name => "index_tags_on_name"
