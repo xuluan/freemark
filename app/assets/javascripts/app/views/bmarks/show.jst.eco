@@ -18,13 +18,13 @@
 
 <div class="taggings">
   <% for tagging in @taggings: %>
-    <span class="tagging" data-id="<%= tagging.id %>"> <%= tagging.name %> <a class="icon-remove"> </a> </span>
+    <span class="tagging" data-id="<%= tagging.id %>" data-name="<%= tagging.name %>"> <%= tagging.name %> <a class="icon-remove"> </a> </span>
   <% end %>
 </div>
 
 <div class="add-tagging">
   <form class="add-tagging">
-    <input type="text" name="name" value="<%= @name %>" placeholder="Tag" required> 
+    <input type="text" name="name" value="" placeholder="Tag" required> 
     <input type="hidden" name="bmark_id" value="<%= @id %>" />
     <button data-type="add" class="add-tag">Add</button>
   </form>

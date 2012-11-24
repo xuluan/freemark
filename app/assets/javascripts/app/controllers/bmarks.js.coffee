@@ -8,6 +8,10 @@ $.fn.tagging = ->
   elementID or= $(@).parents('[data-id]').data('id')
   new Tagging(id:elementID)
 
+$.fn.tagName = ->
+  elementName   = $(@).data('name')
+  elementName or= $(@).parents('[data-name]').data('name')
+
 class BmarkItem extends Spine.Controller
   # Delegate the click event to a local handler
   events:
@@ -34,6 +38,7 @@ class BmarkItem extends Spine.Controller
 
   # Use a template, in this case via Eco
   template: (item) ->
+    item.taggings or= []
     @view('bmarks/show')(item)
 
   destroy: (e) ->
@@ -41,23 +46,27 @@ class BmarkItem extends Spine.Controller
   
   delTag: (e) ->
     tagging = $(e.target).tagging()
-    tagging.destroy() if confirm('Remove this tag, sure?')
-    $(e.target).parents('.tagging').remove()
+    tagName = $(e.target).tagName()
+    if confirm('Remove this tag, sure?')
+      tagging.destroy() 
+      $(e.target).parents('.tagging').remove()
+      Tag.decTag(tagName)
 
   addTag: (e) =>
     e.preventDefault()
     tagging = Tagging.fromForm(e.target).save()
     tagging.bind("ajaxSuccess", @updateTag)
     e.target.name.value = ""
-     # if tagging
   
   updateTag: (data, args...) =>
     if data.hasOwnProperty("id")
-      @$("div.taggings").append("<span class='tagging' data-id='#{data.id}'> #{data.name} <a class='icon-remove'> </a> </span>")
+      @$("div.taggings").append("<span class='tagging' data-id='#{data.id}' data-name='#{data.name}'> #{data.name} <a class='icon-remove'> </a> </span>")
+      Tag.incTag(data.name)
 
 
   remove: =>
     @el.remove()
+    Tag.fetch()
 
   save: (e) ->
     e.preventDefault()
@@ -107,25 +116,6 @@ class AddMark extends Spine.Controller
 
   close: ->
     @el.removeClass("editing")
-
-class App.Tags extends Spine.Controller
-  events:
-    'click': 'click'
-
-  className: 'tags'
-
-  constructor: ->
-    super
-    Tag.bind("refresh change", @render)
-    Tag.fetch()
-    console.log("tag constructor")
-    
-  render: =>
-    tags = Tag.select (record) ->
-      record.taggings_count > 0
-    @html @view('bmarks/index')(tags: tags)
-    
-  click: ->
 
 class App.Main extends Spine.Controller
 
