@@ -6,5 +6,8 @@ Freemark::Application.routes.draw do
   devise_for :users
 
   get "home/index"
+  match "import" => "home#get"
+  match "upload" => "home#save"
+
   root to: "home#index"
 end

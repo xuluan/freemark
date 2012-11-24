@@ -24,6 +24,26 @@ div#main {
   float: left;
 }
 
+div#footer {
+  @extend .row;
+  div.button {
+    @extend .span6;
+    float: left;
+
+    a {
+      @extend .btn;
+      @extend .btn-warning;
+    }
+
+  }
+  div.import {
+    @extend .span3;
+    @extend .btn;
+    @extend .btn-success;
+    float: right;
+  }  
+}
+
 div.tags {
   @extend .span3;
   float: right;
