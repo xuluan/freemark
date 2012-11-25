@@ -1,6 +1,22 @@
 class App.Bmark extends Spine.Model
   @configure 'Bmark', 'title', 'link', 'desc'
-  @extend Spine.Model.Ajax
+  @extend Spine.Model.Ajax.Methods
+  
+  @fetch (params) ->
+    index  = @first()?.id or 9999999999
+    if index is @index
+      return false 
+    @index = index
+    
+    params or= 
+      data: {index: index}
+      processData: true
+
+    @ajax().fetch(params)
+
+  @change (record, type, options = {}) ->
+    return if options.ajax is false
+    record.ajax()[type](options.ajax, options)    
 
   validate: ->
     url_format = /^https?\:\/\/.+$/

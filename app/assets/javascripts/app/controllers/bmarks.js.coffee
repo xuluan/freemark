@@ -145,20 +145,26 @@ class App.Main extends Spine.Controller
   constructor: ->
     super
     Bmark.bind("refresh", @addAll)
-    Bmark.bind("create",  @addOne)
+    Bmark.bind("create",  @addNew)
     Bmark.fetch()
     @addBmark()
     @addFilter()
     @
 
-  addOne: (item) =>
+  addNew: (item) =>
     bmark = new BmarkItem(item: item)
-    # bmark.render()
     @bmarks.prepend(bmark.render().el)
 
-  addAll: =>
-    Bmark.each(@addOne)
+  addOne: (item) =>
+    bmark = new BmarkItem(item: item)
+    @bmarks.append(bmark.render().el)
+
+  addAll: (items = []) =>
+    for item in items
+      @addOne(item)
     Bmark.filter(Filter.all())
+    opts = {offset: '100%'}
+    $("#footer").waypoint(@scroll, opts)
 
   addBmark: ->
     addbmark = new AddMark()
@@ -167,3 +173,7 @@ class App.Main extends Spine.Controller
   addFilter: ->
     filters = new App.Filters()
     @filters.append(filters.render().el)
+
+  scroll: (e, direction) =>
+    $("#footer").waypoint('remove');
+    Bmark.fetch()

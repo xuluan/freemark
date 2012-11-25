@@ -4,13 +4,7 @@ class BmarksController < ApplicationController
   # GET /bmarks
   # GET /bmarks.json
   def index
-    # @bmarks = current_user.bmarks.all
-    # @bmarks = current_user.bmarks.includes(:taggings).map do |bmark| 
-    #   { id: bmark.id, title: bmark.title, link: bmark.link, 
-    #     desc: bmark.desc, taggings: bmark.taggings}
-    # end
-
-    @bmarks = current_user.bmarks.includes(:taggings => :tag).map do |b|
+    @bmarks = current_user.bmarks.where("bmarks.id < ?", params[:index] || 9999999999).order("bmarks.created_at desc").limit(50).includes(:taggings => :tag).map do |b|
       taggings = b.taggings.map do |t| 
         {id:t.id, name:t.name, bmark_id: t.bmark_id}
       end
