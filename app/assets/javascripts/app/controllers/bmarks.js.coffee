@@ -124,7 +124,12 @@ class AddMark extends Spine.Controller
   submit: (e) ->
     e.preventDefault()
     bmark = Bmark.fromForm(e.target).save()
-    @close() if bmark
+    if bmark
+      @close()
+      e.target.title.value = ""
+      e.target.link.value = ""
+      e.target.desc.value = ""
+
 
   cancel: ->
     @close()
@@ -175,7 +180,7 @@ class App.Main extends Spine.Controller
   addOne: (item) =>
     bmark = new BmarkItem(item: item)
     # bmark.render()
-    @bmarks.append(bmark.render().el)
+    @bmarks.prepend(bmark.render().el)
 
   addAll: =>
     Bmark.each(@addOne)
