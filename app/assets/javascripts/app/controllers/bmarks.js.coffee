@@ -55,6 +55,7 @@ class BmarkItem extends Spine.Controller
       Tag.decTag(tagName)
       @item.taggings or= []
       @item.taggings = (tagging for tagging in @item.taggings when tagging.name isnt tagName)
+      @filter(Filter.all())
 
 
   addTag: (e) =>
