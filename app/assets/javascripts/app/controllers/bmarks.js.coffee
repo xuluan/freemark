@@ -53,12 +53,17 @@ class BmarkItem extends Spine.Controller
       tagging.destroy() 
       $(e.target).parents('.tagging').remove()
       Tag.decTag(tagName)
+      @item.taggings or= []
+      @item.taggings = (tagging for tagging in @item.taggings when tagging.name isnt tagName)
+
 
   addTag: (e) =>
     e.preventDefault()
     tagging = Tagging.fromForm(e.target).save()
     tagging.bind("ajaxSuccess", @updateTag)
     e.target.name.value = ""
+    @item.taggings or= []
+    @item.taggings.push(tagging)
   
   updateTag: (data, args...) =>
     if data.hasOwnProperty("id")
