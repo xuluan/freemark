@@ -23,8 +23,7 @@ class App.Tags extends Spine.Controller
       record.taggings_count > 0
       
     @html @view('tags/index')(tags: tags)
-    
+
   addFilter: (e) ->
     tagName = $(e.target).tagName()
     Filter.add(tagName)
-

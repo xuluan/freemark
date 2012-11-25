@@ -50,7 +50,7 @@ div#main {
 
 div#footer {
   @extend .alert;
-  @extend .alert-error;
+  @extend .alert-info;
   @extend .row;
   @extend .clearfix;
   @extend .span12;

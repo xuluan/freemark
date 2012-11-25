@@ -44,7 +44,7 @@ class BmarkItem extends Spine.Controller
     @view('bmarks/show')(item)
 
   destroy: (e) ->
-    @item.destroy() if confirm('Remove this Bookmark, sure?')
+    @item.destroy() if confirm('Delete it, sure?')
   
   delTag: (e) ->
     tagging = $(e.target).tagging()
@@ -71,7 +71,6 @@ class BmarkItem extends Spine.Controller
       @$("div.taggings").append("<span class='tagging' data-id='#{data.id}' data-name='#{data.name}'> #{data.name} <a class='icon-remove'> </a> </span>")
       Tag.incTag(data.name)
 
-
   remove: =>
     @el.remove()
     Tag.fetch()
@@ -95,7 +94,6 @@ class BmarkItem extends Spine.Controller
       @el.removeClass("hide")
     else
       @el.addClass("hide")
-
 
 class AddMark extends Spine.Controller
   events:
@@ -130,40 +128,11 @@ class AddMark extends Spine.Controller
       e.target.link.value = ""
       e.target.desc.value = ""
 
-
   cancel: ->
     @close()
 
   close: ->
     @el.removeClass("editing")
-
-class App.Filters extends Spine.Controller
-  events:
-    'click a.icon-remove': 'delFilter'
-    'click button': 'clear'
-
-  className: 'filters'
-
-  constructor: ->
-    super
-    Filter.bind("refresh change", @render)
-    Filter.fetch()
-    
-  render: =>
-    filters = Filter.all()
-    @html @view('filters/index')(filters: filters)
-    Bmark.filter(filters)
-    @
-    
-  delFilter: (e) ->
-    tagName = $(e.target).tagName()
-    for filter in Filter.all() when filter.name is tagName
-      filter.destroy()
-
-  clear: (e) ->
-    Filter.destroyAll()
-
-
 
 class App.Main extends Spine.Controller
 

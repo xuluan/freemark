@@ -18,8 +18,3 @@ class App.Bmark extends Spine.Model
     for filter in filters
       return false unless filter in tags
     true
-
-
-
-
-
