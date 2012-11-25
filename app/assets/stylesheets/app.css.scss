@@ -1,0 +1,62 @@
+@import "bootstrap";
+
+
+div#app {
+  @extend .row;
+  @extend .clearfix;
+}
+
+
+div#main {
+  @extend .span8;
+  float: left;
+
+  .bmark .edit { display: none; }
+  .bmark.editing .edit { display: block; }
+  .bmark.editing .view { display: none; }
+
+  .add-bmark .edit { display: none; }
+  .add-bmark.editing .edit { display: block; }
+  .add-bmark.editing .view { display: none; }
+
+  .bmark.hide { display: none;}
+
+  #filters {
+    @extend .span8;
+    @extend .alert;
+    @extend .alert-info;
+    margin: auto auto;
+
+    span {
+      @extend .label;
+      margin: auto 10px;
+    }
+  }
+}
+
+div#footer {
+  @extend .alert;
+  @extend .alert-error;
+  @extend .row;
+  @extend .clearfix;
+  @extend .span12;
+
+  margin: 20px auto;
+
+  div.button {
+    @extend .span6;
+    float: left;
+
+    a {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+
+  }
+  div.import a{
+    @extend .span3;
+    @extend .btn;
+    @extend .btn-success;
+    float: right;
+  }  
+}

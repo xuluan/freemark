@@ -1,3 +1,21 @@
-// Place all the styles related to the Tags controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "bootstrap";
+
+div.tags {
+  @extend .span3;
+  @extend .alert;
+  @extend .alert-info;
+  float: right;
+}
+
+div.tag {
+  @extend .label;
+  font-size: 14px;
+  padding: 10px 10px;
+  margin: 10px auto;
+  align-content:  center;
+  span {
+    @extend .badge;
+    @extend .badge-inverse;
+    float: right;
+  }
+}

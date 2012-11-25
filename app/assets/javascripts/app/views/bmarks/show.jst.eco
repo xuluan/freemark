@@ -4,8 +4,8 @@
   <a class="title" href="<%= @link %>"  target="_blank"><%= @title %></a>  
   <p class="desc"> <%= @desc%> </p>
   <div class="action">
-    <a data-type="edit" class="btn btn-success btn-small">Edit</a> 
-    <a data-type="destroy" class="btn btn-warning btn-small">Destroy</a>   
+    <a data-type="edit">Edit</a> 
+    <a data-type="destroy">Delete</a>   
   </div>
 </div>
 <div class="edit">
