@@ -31,6 +31,20 @@ div#main {
       @extend .label;
       margin: auto 10px;
     }
+
+    label {
+      display: inline;
+      float: left;
+    }
+
+    button {
+      float: right;
+      @extend .btn;
+    }
+
+    div {
+      @extend .clearfix;
+    } 
   }
 }
 

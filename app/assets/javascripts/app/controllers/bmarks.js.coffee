@@ -140,6 +140,7 @@ class AddMark extends Spine.Controller
 class App.Filters extends Spine.Controller
   events:
     'click a.icon-remove': 'delFilter'
+    'click button': 'clear'
 
   className: 'filters'
 
@@ -158,6 +159,10 @@ class App.Filters extends Spine.Controller
     tagName = $(e.target).tagName()
     for filter in Filter.all() when filter.name is tagName
       filter.destroy()
+
+  clear: (e) ->
+    Filter.destroyAll()
+
 
 
 class App.Main extends Spine.Controller
