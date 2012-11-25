@@ -1,9 +1,15 @@
 $ = jQuery.sub()
 Tag = App.Tag
+Filter = App.Filter
+
+
+$.fn.tagName = ->
+  elementName   = $(@).data('name')
+  elementName or= $(@).parents('[data-name]').data('name')
 
 class App.Tags extends Spine.Controller
   events:
-    'click': 'click'
+    'click a.icon-tag': 'addFilter'
 
   className: 'tags'
 
@@ -18,4 +24,7 @@ class App.Tags extends Spine.Controller
       
     @html @view('tags/index')(tags: tags)
     
-  click: ->
+  addFilter: (e) ->
+    tagName = $(e.target).tagName()
+    Filter.add(tagName)
+

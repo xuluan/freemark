@@ -4,6 +4,7 @@
 #= require spine/manager
 #= require spine/ajax
 #= require spine/route
+#= require spine/local
 
 #= require_tree ./lib
 #= require_self

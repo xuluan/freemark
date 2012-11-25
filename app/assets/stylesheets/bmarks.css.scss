@@ -16,12 +16,26 @@ div#app {
   .add-bmark .edit { display: none; }
   .add-bmark.editing .edit { display: block; }
   .add-bmark.editing .view { display: none; }
+
+  .bmark.hide { display: none;}
 }
 
 
 div#main {
   @extend .span8;
   float: left;
+
+  #filters {
+    @extend .span8;
+    @extend .alert;
+    @extend .alert-info;
+    margin: auto auto;
+
+    span {
+      @extend .label;
+      margin: auto 10px;
+    }
+  }
 }
 
 div#footer {

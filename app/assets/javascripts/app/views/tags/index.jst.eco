@@ -1,5 +1,5 @@
 <% for tag in @tags: %>
-  <div class="tag" data-id="<%= tag.id %>">
+  <div class="tag" data-id="<%= tag.id %>" data-name="<%= tag.name %>">
   <a class="icon-tag"></a>
     <%= tag.name %>
     <%= tag.taggings_count %>

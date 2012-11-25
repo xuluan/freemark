@@ -2,6 +2,7 @@ $ = jQuery.sub()
 Bmark = App.Bmark
 Tagging = App.Tagging
 Tag = App.Tag
+Filter = App.Filter
 
 $.fn.tagging = ->
   elementID   = $(@).data('id')
@@ -30,6 +31,7 @@ class BmarkItem extends Spine.Controller
     throw "@item required" unless @item
     @item.bind("update", @render)
     @item.bind("destroy", @remove)
+    Bmark.bind("filter", @filter)
 
   render: (item) =>
     @item = item if item
@@ -82,6 +84,13 @@ class BmarkItem extends Spine.Controller
   close: ->
     @el.removeClass("editing")
 
+  filter: (filters) =>
+    if @item.filter(filters)
+      @el.removeClass("hide")
+    else
+      @el.addClass("hide")
+
+
 class AddMark extends Spine.Controller
   events:
     'click .new-bmark': 'create'
@@ -117,12 +126,36 @@ class AddMark extends Spine.Controller
   close: ->
     @el.removeClass("editing")
 
+class App.Filters extends Spine.Controller
+  events:
+    'click a.icon-remove': 'delFilter'
+
+  className: 'filters'
+
+  constructor: ->
+    super
+    Filter.bind("refresh change", @render)
+    Filter.fetch()
+    
+  render: =>
+    filters = Filter.all()
+    @html @view('filters/index')(filters: filters)
+    Bmark.filter(filters)
+    @
+    
+  delFilter: (e) ->
+    tagName = $(e.target).tagName()
+    for filter in Filter.all() when filter.name is tagName
+      filter.destroy()
+
+
 class App.Main extends Spine.Controller
 
   el: "#main"
   elements:
     ".bmarks": "bmarks"
     ".add-bmark": "add"
+    "#filters": "filters"
 
   constructor: ->
     super
@@ -130,6 +163,7 @@ class App.Main extends Spine.Controller
     Bmark.bind("create",  @addOne)
     Bmark.fetch()
     @addBmark()
+    @addFilter()
     @
 
   addOne: (item) =>
@@ -139,7 +173,12 @@ class App.Main extends Spine.Controller
 
   addAll: =>
     Bmark.each(@addOne)
+    Bmark.filter(Filter.all())
 
   addBmark: ->
     addbmark = new AddMark()
     @add.append(addbmark.render().el)
+
+  addFilter: ->
+    filters = new App.Filters()
+    @filters.append(filters.render().el)

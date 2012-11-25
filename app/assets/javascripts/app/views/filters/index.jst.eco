@@ -1,0 +1,7 @@
+Filter List:
+<% for filter in @filters: %>
+  <span class="filter" data-name="<%= filter.name %>">
+ <%= filter.name %> <a class="icon-remove"> </a>   
+  </span>
+<% end %>
+
