@@ -27,7 +27,7 @@
 
 <div class="add-tagging">
   <form class="add-tagging">
-    <input type="text" name="name" value="" placeholder="Tag" required> 
+    <input type="text" name="name" value="" placeholder="Tag" autocomplete="on" required> 
     <input type="hidden" name="bmark_id" value="<%= @id %>" />
     <button data-type="add" class="add-tag">Add</button>
   </form>

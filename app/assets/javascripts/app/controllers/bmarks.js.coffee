@@ -22,6 +22,7 @@ class BmarkItem extends Spine.Controller
     'submit form.edit-bmark': 'save'
     'click a.icon-remove': 'delTag'
     'submit form.add-tagging': 'addTag'
+    'focus input[name="name"]': 'hintTag'
 
   className: 'bmark'
 
@@ -57,6 +58,9 @@ class BmarkItem extends Spine.Controller
       @item.taggings = (tagging for tagging in @item.taggings when tagging.name isnt tagName)
       @filter(Filter.all())
 
+  hintTag: (e) =>
+    tags = (tag.name for tag in Tag.all() when tag.taggings_count > 0)
+    $(e.target).autocomplete({source: tags})
 
   addTag: (e) =>
     e.preventDefault()
