@@ -2,7 +2,7 @@
   <div class="tag" data-id="<%= tag.id %>" data-name="<%= tag.name %>">
   <a class="icon-tag"></a>
     <%= tag.name %>
-    <%= tag.taggings_count %>
+    <span> <%= tag.taggings_count %> </span> 
   </div>
 <% end %>
 

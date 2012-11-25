@@ -69,7 +69,11 @@ div.tag {
   padding: 10px 10px;
   margin: 10px auto;
   align-content:  center;
-
+  span {
+    @extend .badge;
+    @extend .badge-inverse;
+    float: right;
+  }
 }
 
 div#footer{
@@ -116,6 +120,15 @@ div.bmark {
   border-width: 1px;
   margin: 10px auto;
 
+  .tag-area {
+    @extend .clearfix;
+  }
+
+  .bmark-area {
+    @extend .clearfix;
+    margin-bottom: 10px;
+
+  }
 
   input {
     @extend .input-mini;
@@ -128,8 +141,6 @@ div.bmark {
   }
 
   .view {
-    margin-bottom: 40px;
-
     a.title {
       @extend .span2;
       float: left;
@@ -145,7 +156,6 @@ div.bmark {
   }
 
   .edit {
-    margin: 10px auto;
     input {
       @extend .input-medium;
     }
@@ -178,3 +188,4 @@ div.bmark {
   }
 
 }
+

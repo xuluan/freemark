@@ -1,3 +1,5 @@
+<div class="bmark-area">
+
 <div class="view">
   <a class="title" href="<%= @link %>"  target="_blank"><%= @title %></a>  
   <p class="desc"> <%= @desc%> </p>
@@ -15,7 +17,8 @@
     <a data-type="cancel" class="cancel">Cancel</a>
   </form>
 </div>
-
+</div>
+<div class="tag-area">
 <div class="taggings">
   <% for tagging in @taggings: %>
     <span class="tagging" data-id="<%= tagging.id %>" data-name="<%= tagging.name %>"> <%= tagging.name %> <a class="icon-remove"> </a> </span>
@@ -28,4 +31,5 @@
     <input type="hidden" name="bmark_id" value="<%= @id %>" />
     <button data-type="add" class="add-tag">Add</button>
   </form>
+</div>
 </div>
