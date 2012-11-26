@@ -51,6 +51,7 @@ group :development, :test do
 
   # gem 'pry-rails'
   # gem 'pry-nav'  
+  gem 'thin'  
 end
 
 gem "devise"
