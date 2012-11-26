@@ -40,6 +40,8 @@ div#main {
     button {
       float: right;
       @extend .btn;
+      @extend .btn-small;
+
     }
 
     div {
