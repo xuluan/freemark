@@ -5,6 +5,19 @@ div.tags {
   @extend .alert;
   @extend .alert-info;
   float: right;
+
+  button.alpha-sort {
+    @extend .btn;
+    @extend .btn-small;
+    @extend .btn-primary;
+  }
+
+  button.hot-sort {
+    @extend .btn;
+    @extend .btn-small;
+    @extend .btn-inverse;    
+    float: right;
+  }  
 }
 
 div.tag {

@@ -1,3 +1,7 @@
+<div>
+<button class="alpha-sort"> Alpha Sort </button>
+<button class="hot-sort"> Hot Sort </button>
+</div>
 <% for tag in @tags: %>
   <div class="tag" data-id="<%= tag.id %>" data-name="<%= tag.name %>">
   <a class="icon-tag"></a>
