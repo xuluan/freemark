@@ -4,9 +4,10 @@
 </div>
 <% for tag in @tags: %>
   <div class="tag" data-id="<%= tag.id %>" data-name="<%= tag.name %>">
+  <span> <%= tag.taggings_count %> </span> 
+
   <a class="icon-tag"></a>
     <%= tag.name %>
-    <span> <%= tag.taggings_count %> </span> 
   </div>
 <% end %>
 
