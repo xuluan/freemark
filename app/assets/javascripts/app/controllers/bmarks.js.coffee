@@ -13,6 +13,15 @@ $.fn.tagName = ->
   elementName   = $(@).data('name')
   elementName or= $(@).parents('[data-name]').data('name')
 
+
+App.updatePlaceholder = ->
+  $('input, textarea').placeholder()
+  $('.EA-label-hover').on "mouseover", ->
+    $(this).find('p').css('display','inline')
+  $('.EA-label-hover').on "mouseout", ->
+    $(this).find('p').css('display','none')
+
+
 class BmarkItem extends Spine.Controller
   # Delegate the click event to a local handler
   events:
@@ -148,10 +157,10 @@ class App.Main extends Spine.Controller
 
   constructor: ->
     super
+    @addBmark()    
     Bmark.bind("refresh", @addAll)
     Bmark.bind("create",  @addNew)
     Bmark.fetch()
-    @addBmark()
     @addFilter()
     @
 
@@ -169,6 +178,7 @@ class App.Main extends Spine.Controller
     Bmark.filter(Filter.all())
     opts = {offset: '100%'}
     $("#footer").waypoint(@scroll, opts)
+    App.updatePlaceholder()
 
   addBmark: ->
     addbmark = new AddMark()

@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
-//= require app
 //= require jquery.placeholder
+//= require app
 
 
 $(document).ready(function() {
