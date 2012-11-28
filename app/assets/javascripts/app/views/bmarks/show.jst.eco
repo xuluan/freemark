@@ -4,8 +4,8 @@
   <a class="title" href="<%= @link %>"  target="_blank"><%= @title %></a>  
   <p class="desc"> <%= @desc%> </p>
   <div class="action">
-    <a data-type="edit">Edit</a> 
-    <a data-type="destroy">Delete</a>   
+    <button data-type="edit">Edit</button> 
+    <button data-type="destroy">Delete</button>
   </div>
 </div>
 <div class="edit">
@@ -14,7 +14,7 @@
     <input type="text" name="link" value="<%= @link %>" placeholder="Link" required> 
     <input type="text" name="desc" value="<%= @desc %>" placeholder="Description"> 
     <button data-type="save" class="save">Save</button>
-    <a data-type="cancel" class="cancel">Cancel</a>
+    <button data-type="cancel" class="cancel">Cancel</button>
   </form>
 </div>
 </div>

@@ -1,11 +1,15 @@
 @import "bootstrap";
 
+button {
+  @extend .btn;
+  @extend .btn-small;
+}
+
 
 div#app {
   @extend .row;
   @extend .clearfix;
 }
-
 
 div#main {
   @extend .span8;
@@ -39,9 +43,6 @@ div#main {
 
     button {
       float: right;
-      @extend .btn;
-      @extend .btn-small;
-
     }
 
     div {
@@ -59,19 +60,21 @@ div#footer {
 
   margin: 20px auto;
 
+  a {
+    @extend .btn;
+  }
+
   div.button {
     @extend .span6;
     float: left;
 
     a {
-      @extend .btn;
       @extend .btn-primary;
     }
 
   }
   div.import a{
     @extend .span3;
-    @extend .btn;
     @extend .btn-success;
     float: right;
   }  

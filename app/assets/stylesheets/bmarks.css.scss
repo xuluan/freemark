@@ -70,14 +70,7 @@ div.bmark {
       float: right;
     }   
 
-    a[data-type="destroy"] {
-      @extend .btn;
-      @extend .btn-small;
-    }
-
-    a[data-type="edit"] {
-      @extend .btn;
-      @extend .btn-small;
+    button[data-type="edit"] {
       @extend .btn-primary;
     } 
 
@@ -93,13 +86,11 @@ div.bmark {
     }
 
     button.save {
-      @extend .btn;
       @extend .btn-primary;
       @extend .btn-mini;
     }
 
-    a.cancel {
-      @extend .btn;
+    button.cancel {
       @extend .btn-mini;
     }
   }
@@ -134,7 +125,6 @@ div.bmark {
     }
 
     button.add-tag {
-      @extend .btn;
       @extend .btn-success;
       @extend .btn-mini;
     }

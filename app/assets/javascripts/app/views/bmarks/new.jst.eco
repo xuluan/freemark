@@ -7,6 +7,6 @@
       <input class="input-medium" type="text" name="link"  value="<%= @link %>" placeholder="Link" required> 
       <input class="input-medium" type="text" name="desc"  value="<%= @desc %>" placeholder="Description"> 
       <button data-type="save" class="create-bmark">Create</button>
-      <a data-type="cancel" class="cancel">Cancel</a>
+      <button data-type="cancel" class="cancel">Cancel</button>
     </form>
   </div>

@@ -1,3 +1,7 @@
+ /*
+ *= require_self
+ *= require jquery.ui.autocomplete
+ */
 @import "bootstrap";
 
 .fm-navbar {
@@ -81,4 +85,319 @@
   }
 }
 
+// -- app
 
+button {
+  @extend .btn;
+  @extend .btn-small;
+}
+
+
+div#app {
+  @extend .row;
+  @extend .clearfix;
+}
+
+div#main {
+  @extend .span8;
+  float: left;
+
+  .bmark .edit { display: none; }
+  .bmark.editing .edit { display: block; }
+  .bmark.editing .view { display: none; }
+
+  .add-bmark .edit { display: none; }
+  .add-bmark.editing .edit { display: block; }
+  .add-bmark.editing .view { display: none; }
+
+  .bmark.hide { display: none;}
+
+  #filters {
+    @extend .span8;
+    @extend .alert;
+    @extend .alert-info;
+    margin: auto auto;
+
+    span {
+      @extend .label;
+      margin: auto 10px;
+    }
+
+    label {
+      display: inline;
+      float: left;
+    }
+
+    button {
+      float: right;
+    }
+
+    div {
+      @extend .clearfix;
+    } 
+  }
+}
+
+div#footer {
+  @extend .alert;
+  @extend .alert-info;
+  @extend .row;
+  @extend .clearfix;
+  @extend .span12;
+
+  margin: 20px auto;
+
+  a {
+    @extend .btn;
+  }
+
+  div.button {
+    @extend .span6;
+    float: left;
+
+    a {
+      @extend .btn-primary;
+    }
+
+  }
+  div.import a{
+    @extend .span3;
+    @extend .btn-success;
+    float: right;
+  }  
+}
+
+div.tags {
+  @extend .span3;
+  @extend .alert;
+  @extend .alert-info;
+  float: right;
+
+  button.alpha-sort {
+    @extend .btn-primary;
+  }
+
+  button.hot-sort {
+    @extend .btn-inverse;    
+    float: right;
+  }  
+}
+
+div.tag {
+  @extend .label;
+  font-size: 14px;
+  padding: 10px 10px;
+  margin: 10px auto;
+  align-content:  center;
+  span {
+    @extend .badge;
+    @extend .badge-inverse;
+    float: right;
+  }
+}
+
+// -- bmarks
+
+//add bmark area
+div.add-bmark {
+  @extend .clearfix;
+  margin: 20px auto;
+
+  button.new-bmark {
+    @extend .btn;
+    @extend .btn-success;
+  }
+
+  div.edit {
+    padding: 20px 20px;
+    @extend .alert;
+    @extend .alert-info;
+
+    div {
+      float: right;
+    }
+
+  }
+
+  button.create-bmark {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-small;
+
+  }
+
+  a.cancel {
+    @extend .btn;
+    @extend .btn-small;
+  }
+}
+
+
+// bmarks area
+div.bmarks {
+  @extend .clearfix;
+}
+
+// each bmark
+div.bmark {
+  @extend .span8;
+  @extend .clearfix;
+  border-bottom-style: dashed;
+  border-width: 1px;
+  margin: 10px auto;
+
+// bmark area
+  .bmark-area {
+    @extend .clearfix;
+    margin-bottom: 10px;
+  }
+
+  .view {
+    a.title {
+      @extend .span2;
+      float: left;
+      margin-right: 10px;
+    }
+
+    p.desc {
+      @extend .span4;
+      float: left;
+    }
+    div.action {
+      @extend .span2;
+      float: right;
+    }   
+
+    button[data-type="edit"] {
+      @extend .btn-primary;
+    } 
+
+  }
+
+  .edit {
+    form.edit-bmark {
+      @extend .form-horizontal;
+    }
+
+    input {
+      @extend .input-medium;
+    }
+
+    button.save {
+      @extend .btn-primary;
+      @extend .btn-mini;
+    }
+
+    button.cancel {
+      @extend .btn-mini;
+    }
+  }
+
+// -- tags
+//tagging area
+  .tag-area {
+    @extend .clearfix;
+  }
+
+//tagging list
+  div.taggings {
+    @extend .span5;
+    float: left;
+  }
+
+  span.tagging {
+    @extend .label;
+    margin: 10px 10px 10px 0;
+  }
+
+//add tagging
+  div.add-tagging {
+    @extend .span2;
+    float: right;
+
+    form {
+      @extend .form-horizontal;
+    }
+
+    input {
+      @extend .input-mini;
+    }
+
+    button.add-tag {
+      @extend .btn-success;
+      @extend .btn-mini;
+    }
+  }
+}
+
+// -- scaffolds
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+  &:visited {
+    color: #666;
+  }
+  &:hover {
+    color: #fff;
+    background-color: #000;
+  }
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}

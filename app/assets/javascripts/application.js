@@ -14,7 +14,8 @@
 //= require jquery_ujs
 //= require jquery.ui.autocomplete
 //= require app
-//= require_tree .
+//= require jquery.placeholder
+
 
 $(document).ready(function() {
   $('input, textarea').placeholder();
