@@ -167,6 +167,7 @@ div#footer {
   }  
 }
 
+// -- tags
 div.tags {
   @extend .span3;
   @extend .alert;
@@ -197,14 +198,12 @@ div.tag {
 }
 
 // -- bmarks
-
 //add bmark area
 div.add-bmark {
   @extend .clearfix;
   margin: 20px auto;
 
   button.new-bmark {
-    @extend .btn;
     @extend .btn-success;
   }
 
@@ -220,15 +219,7 @@ div.add-bmark {
   }
 
   button.create-bmark {
-    @extend .btn;
     @extend .btn-primary;
-    @extend .btn-small;
-
-  }
-
-  a.cancel {
-    @extend .btn;
-    @extend .btn-small;
   }
 }
 
@@ -285,15 +276,10 @@ div.bmark {
 
     button.save {
       @extend .btn-primary;
-      @extend .btn-mini;
     }
 
-    button.cancel {
-      @extend .btn-mini;
-    }
   }
 
-// -- tags
 //tagging area
   .tag-area {
     @extend .clearfix;
@@ -325,10 +311,11 @@ div.bmark {
 
     button.add-tag {
       @extend .btn-success;
-      @extend .btn-mini;
     }
   }
 }
+
+
 
 // -- scaffolds
 
