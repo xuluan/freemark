@@ -16,10 +16,6 @@ $.fn.tagName = ->
 
 App.updatePlaceholder = ->
   $('input, textarea').placeholder()
-  $('.EA-label-hover').on "mouseover", ->
-    $(this).find('p').css('display','inline')
-  $('.EA-label-hover').on "mouseout", ->
-    $(this).find('p').css('display','none')
 
 
 class BmarkItem extends Spine.Controller
@@ -46,6 +42,7 @@ class BmarkItem extends Spine.Controller
   render: (item) =>
     @item = item if item
     @html(@template(@item))
+    @$("input, textarea").placeholder()
     @
 
   # Use a template, in this case via Eco
@@ -178,7 +175,6 @@ class App.Main extends Spine.Controller
     Bmark.filter(Filter.all())
     opts = {offset: '100%'}
     $("#footer").waypoint(@scroll, opts)
-    App.updatePlaceholder()
 
   addBmark: ->
     addbmark = new AddMark()
