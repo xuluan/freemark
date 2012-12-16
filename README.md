@@ -1,7 +1,7 @@
 freemark
 ========
 
-clone delicious, use rails and spinejs
+clone delicious, rails + spinejs
 
 demo:  freemark.xuluan.me  
 email： test@test.com
